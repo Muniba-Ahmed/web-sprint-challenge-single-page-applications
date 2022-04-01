@@ -25,6 +25,7 @@ const initialFormErrors = {
 const App = () => {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
+
   const [pizza, setPizza] = useState([]);
 
   const validate = (name, value) => {
@@ -44,7 +45,7 @@ const App = () => {
     axios
       .post("https://reqres.in/api/orders", formValues)
       .then((res) => {
-        // console.log(res);
+        console.log(res);
         setPizza([res.data], ...pizza);
       })
       .catch((err) => console.error(err))
@@ -71,6 +72,7 @@ const App = () => {
             values={formValues}
             change={inputChange}
             submit={formSubmit}
+            errors={formErrors}
           />
         </Route>
       </Switch>

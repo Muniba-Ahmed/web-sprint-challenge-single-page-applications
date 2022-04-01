@@ -18,6 +18,22 @@ function PizzaForm(props) {
     <div>
       <h1>Pizza Order Form</h1>
       <form id="pizza-form" onSubmit={onSubmit}>
+        {/* <label>
+          {" "}
+          Name:
+          <input
+            id="name-input"
+            name="name"
+            type="text"
+            onChange={onChange}
+            value={values.name}
+            placeholder="Name"
+          />
+        </label> */}
+        <div className="errors">
+          <div>{errors.name}</div>
+          <div>{errors.size}</div>
+        </div>
         <label>
           {" "}
           Name:
@@ -27,7 +43,7 @@ function PizzaForm(props) {
             type="text"
             onChange={onChange}
             value={values.name}
-            placeholder="your name here"
+            placeholder="Name"
           />
         </label>
         <label>
