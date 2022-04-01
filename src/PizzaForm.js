@@ -80,6 +80,7 @@ function PizzaForm(props) {
             checked={values.bellpepper}
             onChange={onChange}
             name="bellpepper"
+            type="checkbox"
           />
         </label>
         <label>

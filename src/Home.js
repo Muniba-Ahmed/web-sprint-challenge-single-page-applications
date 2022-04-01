@@ -9,7 +9,7 @@ const Home = () => {
 
   return (
     <div>
-      <button onClick={routeToOrder} className="shop-button">
+      <button onClick={routeToOrder} className="shop-button" id="order-pizza">
         Order Now!
       </button>
     </div>
