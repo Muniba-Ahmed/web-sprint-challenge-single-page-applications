@@ -3,6 +3,22 @@ import { Route, Link, Switch } from "react-router-dom";
 import Home from "./Home";
 import PizzaForm from "./PizzaForm";
 
+const initialFormValues = {
+  name: "",
+  size: "",
+  cheese: false,
+  pepperoni: false,
+  mushroom: false,
+  bellpepper: false,
+  olives: false,
+  specials: "",
+};
+
+const initialFormErrors = {
+  name: "",
+  size: "",
+};
+
 const App = () => {
   const [pizza, setPizza] = useState([]);
 

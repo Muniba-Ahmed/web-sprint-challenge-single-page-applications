@@ -1,17 +1,7 @@
 import React from "react";
 
-const PizzaForm = (props) => {
-  const { change, submit, error } = props;
-  const {
-    username,
-    size,
-    cheese,
-    pepperoni,
-    mushroom,
-    bellpepper,
-    olives,
-    specialtext /** wip */,
-  } = props.values;
+function PizzaForm(props) {
+  const { values, change, submit, errors } = props;
 
   const onSubmit = (evt) => {
     evt.preventDefault();
@@ -32,10 +22,11 @@ const PizzaForm = (props) => {
           {" "}
           Name:
           <input
-            value={username}
+            value={values.name}
             onChange={onChange}
-            name="username"
+            name="name"
             type="text"
+            placeholder="your name here"
             id="name-input"
           />
         </label>
@@ -43,7 +34,7 @@ const PizzaForm = (props) => {
           Pizza Size:
           <select
             id="size-dropdown"
-            value={size}
+            value={values.size}
             name="size"
             onChange={onChange}
           >
@@ -58,66 +49,63 @@ const PizzaForm = (props) => {
         <label>
           Cheese
           <input
-            values={cheese}
+            checked={values.cheese}
             onChange={onChange}
             name="cheese"
             type="checkbox"
-            checked={cheese}
           />
         </label>
         <label>
           Pepperoni
           <input
-            values={pepperoni}
+            checked={values.pepperoni}
             onChange={onChange}
             name="pepperoni"
             type="checkbox"
-            checked={pepperoni}
           />
         </label>
         <label>
           Mushrooms
           <input
-            values={mushroom}
+            checked={values.mushroom}
             onChange={onChange}
             name="mushroom"
             type="checkbox"
-            checked={mushroom}
           />
         </label>
         <label>
           {" "}
           Bellpeppers
           <input
-            values={bellpepper}
+            checked={values.bellpepper}
             onChange={onChange}
             name="bellpepper"
-            checked={bellpepper}
           />
         </label>
         <label>
           Olives
           <input
-            values={olives}
+            checked={values.olives}
             onChange={onChange}
             name="olives"
             type="checkbox"
-            checked={olives}
           />
         </label>
+
         <label>
           <input
-            values={specialtext}
+            value={values.specials}
             onChange={onChange}
-            name="specialtext"
+            name="specials"
             type="text"
             id="special-text"
+            placeholder="Special instructions here"
           />
         </label>
         <input type="submit" value="order-button" id="order-button" />
       </form>
     </div>
   );
-};
+}
 
 export default PizzaForm;
