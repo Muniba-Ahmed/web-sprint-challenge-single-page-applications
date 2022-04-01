@@ -22,12 +22,12 @@ function PizzaForm(props) {
           {" "}
           Name:
           <input
-            value={values.name}
-            onChange={onChange}
+            id="name-input"
             name="name"
             type="text"
+            onChange={onChange}
+            value={values.name}
             placeholder="your name here"
-            id="name-input"
           />
         </label>
         <label>

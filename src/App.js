@@ -4,6 +4,7 @@ import Home from "./Home";
 import PizzaForm from "./PizzaForm";
 import * as yup from "yup";
 import schema from "./formSchema";
+import axios from "axios";
 
 const initialFormValues = {
   name: "",
@@ -34,6 +35,24 @@ const App = () => {
       .catch((err) => setFormErrors({ ...formErrors, [name]: err.errors[0] }));
   };
 
+  const inputChange = (name, value) => {
+    validate(name, value);
+    setFormValues({ ...formValues, [name]: value });
+  };
+
+  const formSubmit = () => {
+    axios
+      .post("https://reqres.in/api/orders", formValues)
+      .then((res) => {
+        // console.log(res);
+        setPizza([res.data], ...pizza);
+      })
+      .catch((err) => console.error(err))
+      .finally(() => {
+        setFormValues(initialFormValues);
+      });
+  };
+
   return (
     <div className="App">
       <nav>
@@ -43,12 +62,18 @@ const App = () => {
           <Link to="/pizza">Order</Link>
         </div>
       </nav>
-      <Route path="/pizza">
-        <PizzaForm />
-      </Route>
-      <Route path="/">
-        <Home />
-      </Route>
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/pizza">
+          <PizzaForm
+            values={formValues}
+            change={inputChange}
+            submit={formSubmit}
+          />
+        </Route>
+      </Switch>
     </div>
   );
 };
