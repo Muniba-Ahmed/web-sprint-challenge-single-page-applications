@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Route, Link, Switch } from "react-router-dom";
 import Home from "./Home";
 import PizzaForm from "./PizzaForm";
+import * as yup from "yup";
+import schema from "./formSchema";
 
 const initialFormValues = {
   name: "",
@@ -20,7 +22,17 @@ const initialFormErrors = {
 };
 
 const App = () => {
+  const [formValues, setFormValues] = useState(initialFormValues);
+  const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [pizza, setPizza] = useState([]);
+
+  const validate = (name, value) => {
+    yup
+      .reach(schema, name)
+      .validate(value)
+      .then(() => setFormErrors({ ...formErrors, [name]: "" }))
+      .catch((err) => setFormErrors({ ...formErrors, [name]: err.errors[0] }));
+  };
 
   return (
     <div className="App">
